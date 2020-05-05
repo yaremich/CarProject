@@ -2,6 +2,8 @@
 #include "stm32f10x_gpio.h"
 #include "stm32f10x_rcc.h"
 
+#include "Servo.h"
+
 void SetSysClockTo72(void)
 {
     ErrorStatus HSEStartUpStatus;
@@ -37,9 +39,13 @@ int main()
 {
 	SetSysClockTo72();
 	
+	ServoInit();
+	
 	while(1)
 	{
-
+		TIM_SetCompare4(TIM4, 61);
+		TIM_SetCompare4(TIM4, 75);
+		TIM_SetCompare4(TIM4, 89);
 	}
 }
 

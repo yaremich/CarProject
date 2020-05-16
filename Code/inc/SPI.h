@@ -1,0 +1,3 @@
+
+void initAll(void);
+

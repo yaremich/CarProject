@@ -1,11 +1,27 @@
 #include "stm32f10x.h"
 #include "stm32f10x_gpio.h"
 #include "stm32f10x_rcc.h"
+#include "stm32f10x_spi.h"
 
 #include "Servo.c"
 #include "Servo.h"
+
 #include "Engine.c"
 #include "Engine.h"
+
+#include "SPI.c"
+#include "SPI.h"
+
+
+GPIO_InitTypeDef port;
+SPI_InitTypeDef spi;
+uint8_t data;
+uint8_t sendData;
+uint16_t counter;
+uint16_t Data;
+
+
+
 
 void SetSysClockTo72(void)
 {
@@ -40,6 +56,30 @@ void SetSysClockTo72(void)
 
 int main()
 {
+		   __enable_irq();	
+    initAll();
+    SPI_Cmd(SPI1, ENABLE);
+	  char sendData = 'H';
+    SPI_I2S_SendData(SPI1, (uint8_t) sendData);	
+	  /////f 
+    initAll();
+	  SPI_Cmd(SPI1, ENABLE);
+    GPIO_SetBits(GPIOC, GPIO_Pin_13);
+    while(1)
+		{
+       data = SPI_I2S_ReceiveData(SPI1);
+			 if (data == 'H')
+			 {
+				 GPIO_ResetBits(GPIOC, GPIO_Pin_13);
+				 for(int i = 0; i < 160000; ++i){}
+				 GPIO_SetBits(GPIOC, GPIO_Pin_13);
+				 for(int i = 0; i < 160000; ++i){}
+				 }
+			 //for(int i = 0; i < 160000; --i){}
+			 }	
+		
+	
+	
 	SetSysClockTo72();
 	
 	ServoInit();

@@ -2,6 +2,10 @@
 #include "stm32f10x_gpio.h"
 #include "stm32f10x_rcc.h"
 
+#include "Servo.c"
+#include "Servo.h"
+#include "Engine.c"
+#include "Engine.h"
 
 void SetSysClockTo72(void)
 {

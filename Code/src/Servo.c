@@ -30,5 +30,5 @@ void ServoInit(void)
 	TIM_OC4Init(TIM4,&timerPWM);
 	TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Enable);
 	TIM_CtrlPWMOutputs(TIM4, ENABLE);
-  TIM_Cmd(TIM4, ENABLE);
+        TIM_Cmd(TIM4, ENABLE);
 }

@@ -2,7 +2,6 @@
 
 void ServoInit(void)
 {
-	//75 forward; 61 right; 89 left;
 	GPIO_InitTypeDef port;
 	TIM_TimeBaseInitTypeDef timer; 
 	TIM_OCInitTypeDef timerPWM; 
@@ -32,3 +31,21 @@ void ServoInit(void)
 	TIM_CtrlPWMOutputs(TIM4, ENABLE);
         TIM_Cmd(TIM4, ENABLE);
 }
+
+void Forward(void)
+{
+	TIM_SetCompare4(TIM4, 75);
+}
+
+void TurnRight(void)
+{
+	TIM_SetCompare4(TIM4, 61);
+}
+
+void TurnLeft(void)
+{
+	TIM_SetCompare4(TIM4, 89);
+}
+
+
+

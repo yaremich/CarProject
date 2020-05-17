@@ -50,9 +50,7 @@ int main()
 	
 	while(1)
 	{
-		TIM_SetCompare4(TIM4, 61);
-		TIM_SetCompare4(TIM4, 75);
-		TIM_SetCompare4(TIM4, 89);
+
 	}
 }
 

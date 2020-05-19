@@ -3,13 +3,10 @@
 #include "stm32f10x_rcc.h"
 #include "stm32f10x_spi.h"
 
-#include "Servo.c"
 #include "Servo.h"
 
-#include "Engine.c"
 #include "Engine.h"
 
-#include "Indicator.c"
 #include "Indicator.h"
 
 void SetSysClockTo72(void)
@@ -50,12 +47,12 @@ int main()
 	
 	ServoInit();
 	
+	EngineInit();
+	
 	IndicatorInit();
 	
 	EngineStart();
-	
-	EngineInit();	
-	
+		
 	while(1)
 	{
 		IndicatorBlink();

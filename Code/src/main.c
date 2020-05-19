@@ -9,6 +9,8 @@
 #include "Engine.c"
 #include "Engine.h"
 
+#include "Indicator.c"
+#include "Indicator.h"
 
 void SetSysClockTo72(void)
 {
@@ -48,9 +50,11 @@ int main()
 	
 	ServoInit();
 	
+	IndicatorInit();
+	
 	while(1)
 	{
-
+		IndicatorBlink();
 	}
 }
 

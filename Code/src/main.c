@@ -52,6 +52,10 @@ int main()
 	
 	IndicatorInit();
 	
+	EngineStart();
+	
+	EngineInit();	
+	
 	while(1)
 	{
 		IndicatorBlink();

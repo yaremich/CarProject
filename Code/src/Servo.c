@@ -9,9 +9,9 @@ void ServoInit(void)
 	TIM_TimeBaseInitTypeDef timer; 
 	TIM_OCInitTypeDef timerPWM; 
 
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);	
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE); 
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
-	
+
 	port.GPIO_Mode = GPIO_Mode_AF_PP;
 	port.GPIO_Pin = GPIO_Pin_9; 
 	port.GPIO_Speed = GPIO_Speed_50MHz; 
@@ -32,7 +32,7 @@ void ServoInit(void)
 	TIM_OC4Init(TIM4,&timerPWM);
 	TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Enable);
 	TIM_CtrlPWMOutputs(TIM4, ENABLE);
-        TIM_Cmd(TIM4, ENABLE);
+	TIM_Cmd(TIM4, ENABLE);
 }
 
 void Forward(void)

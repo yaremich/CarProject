@@ -4,9 +4,7 @@
 #include "stm32f10x_spi.h"
 
 #include "Servo.h"
-
 #include "Engine.h"
-
 #include "Indicator.h"
 
 void SetSysClockTo72(void)
@@ -38,11 +36,8 @@ void SetSysClockTo72(void)
     }
 }
  
-
-
 int main()
-{
-	
+{	
 	SetSysClockTo72();
 	
 	ServoInit();
@@ -54,11 +49,7 @@ int main()
 	EngineStart();
 		
 	while(1)
-	{
-		IndicatorBlink();
+	{			
+		IndicatorBlink();	
 	}
 }
-
-
-
-

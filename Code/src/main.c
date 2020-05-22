@@ -2,10 +2,18 @@
 #include "stm32f10x_gpio.h"
 #include "stm32f10x_rcc.h"
 #include "stm32f10x_spi.h"
+#include "stm32f10x_usart.h"
+#include "string.h"
 
 #include "Servo.h"
+
 #include "Engine.h"
+
 #include "Indicator.h"
+
+#include "UART.h"
+
+#include "SPI.h"
 
 void SetSysClockTo72(void)
 {
@@ -36,20 +44,52 @@ void SetSysClockTo72(void)
     }
 }
  
+
 int main()
-{	
+{
 	SetSysClockTo72();
 	
+	RPCconnectionInit();
+	
 	ServoInit();
+	
+	UartInit();
 	
 	EngineInit();
 	
 	IndicatorInit();
-	
+  
 	EngineStart();
-		
+	
+	char* start = "start";
+	USARTSend(start);	
+	
 	while(1)
-	{			
-		IndicatorBlink();	
+	{	
+		if(temp() == 1)
+			{
+				USART_SendData(USART1,(uint16_t)'R');
+				TurnRight();			
+			}	
+		else if(temp() == 2)
+			{
+				USART_SendData(USART1,(uint16_t)'S');
+				EngineStop();
+				Forward();
+			
+			}
+		else if(temp() == 0)
+			{
+				USART_SendData(USART1,(uint16_t)'L');
+				TurnLeft();	
+			}
+			
+	for(int i = 0; i < 99999999; i++);
+	//EngineStart();
+	Forward();
+			
+	IndicatorBlink();
+		
 	}
 }
+
